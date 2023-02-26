@@ -10,8 +10,8 @@ environment {
     SERVER_USER = "root"  // username of your remote server
     REPO_NAME = "ankitraz/mywebsite"  // your dockerhub repo name
     APP_NAME = "mywebsite" // name of your app
-    DOCKER_USER = credentials('dockerhub-id-pass').username
-    DOCKER_PASS = credentials('dockerhub-id-pass').password
+    DOCKER_USER = credentials('dockerhub-id-pass').username()
+    DOCKER_PASS = credentials('dockerhub-id-pass').password()
 }
 
     stages{
