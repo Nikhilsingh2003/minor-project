@@ -23,10 +23,10 @@ def Deploy(){
     
     
     sshagent(['github-ssh-key']) {  // using  private ssh key of jenkins to connect to remote production server
-        //copying docker-compose.yml file to remote server
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-id-pass', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
         sh "scp docker-compose.yml ${env.SERVER_USER}@${env.SERVER_IP}:/root/new"  // copy docker-compose.yml file to remote server
         sh "ssh -o StrictHostKeyChecking=no ${env.SERVER_USER}@${env.SERVER_IP} '${makedir};${cd};${dockerlogin};${dockerCmd}'"  // running commands on remote server, you can add more commands here seperating them with semicolon
-        
+        }
     }
 }
 
